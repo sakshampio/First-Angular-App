@@ -1,0 +1,31 @@
+<app-header></app-header>
+<!-- When a list of items is displayed (e.g., a list of users) and the data changes (e.g., users are added, removed, or updated), Angular updates the DOM. By default, Angular compares each item in the list by reference to detect changes. However, this process can be inefficient for large datasets, as Angular may unnecessarily re-render the entire list, even if only one item has changed.
+
+To avoid unnecessary re-renders, track by allows Angular to uniquely identify each item using a specific property, such as user.id. This way, Angular can efficiently update only the modified items in the list, improving performance. -->
+<!-- 
+Optimized Performance: Only updates the DOM for changed items.
+
+Efficient Comparison: Compares items using a unique key instead of object references.
+
+Improved Scalability: Particularly helpful in applications with large or frequently changing lists. -->
+
+<main>
+  <ul id="users">
+    @for(user of users; track user.id){
+    <!-- <li *ngFor="let user of users"> -->
+    <li>
+      <app-user
+        [user]="user"
+        [selected]="user.id === selectedUserId"
+        (select)="onSelectUser($event)"
+      >
+      </app-user>
+    </li>
+    }
+  </ul>
+  @if (selectedUser) {
+  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name"></app-tasks>
+  } @else {
+  <p id="fallback">select a user to see there tasks!</p>
+  }
+</main>
