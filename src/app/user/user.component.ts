@@ -1,5 +1,6 @@
 import { Component,Input, input, Output , EventEmitter} from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
+import { CardsComponent } from "../shared/cards/cards.component";
 const randomIndex = Math.floor(Math.random()*DUMMY_USERS.length);
 
 // type user ={// with this we can define athers types also this can be used in alising 
@@ -17,7 +18,8 @@ const randomIndex = Math.floor(Math.random()*DUMMY_USERS.length);
   selector: 'app-user',
   standalone: true,
   templateUrl: './user.component.html',
-  styleUrl: './user.component.scss'
+  styleUrl: './user.component.scss',
+  imports: [CardsComponent]
 })
 export class UserComponent {
   // @Input({required : true}) id!: string;
